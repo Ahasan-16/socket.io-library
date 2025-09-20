@@ -13,9 +13,11 @@ const io=new Server(expressServer);
 
 io.on('connection', (socket)=>{
     console.log('connection connected');
-    setTimeout(()=>{
-        socket.send("i am data,from server side !");
-    },5000);
+    setInterval(()=>{
+        let d=new Date();
+        let t=d.getTime();
+        socket.send(t);
+    },100);
 })
 
 

@@ -13,7 +13,9 @@
 <script>
     const socket = io();
     socket.on('message', (data) => {
+        document.getElementById('h1').innerText="";
         document.getElementById('h1').innerText=data;
+
     });
 </script>
 </body>
