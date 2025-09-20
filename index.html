@@ -9,14 +9,15 @@
 </head>
 <body>
 <h1 id="h1"> I am learning socket.io library</h1>
+<input type="text" id="input">
+<button onclick="send()">Send</button>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    const socket = io();
-    socket.on('myEvent', (data) => {
-        document.getElementById('h1').innerText="";
-        document.getElementById('h1').innerText=data;
-
-    });
+    let socket=io();
+const send=()=>{
+    let text=document.getElementById('input').value;
+    socket.send(text);
+}
 </script>
 </body>
 </html>
