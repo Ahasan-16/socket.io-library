@@ -16,7 +16,7 @@
     let socket=io();
 const send=()=>{
     let text=document.getElementById('input').value;
-    socket.send(text);
+    socket.emit('myEvent',text);
 }
 </script>
 </body>

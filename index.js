@@ -13,7 +13,7 @@ const io=new Server(expressServer);
 
 io.on('connection', (socket)=>{
     console.log('connection connected');
-    socket.on('message',(data)=>{
+    socket.on('myEvent',(data)=>{
         console.log(data);
     })
 })
