@@ -8,12 +8,13 @@
     <title>socket.io</title>
 </head>
 <body>
-<h1> I am learning socket.io library</h1>
-
-
+<h1 id="h1"> I am learning socket.io library</h1>
 <script src="/socket.io/socket.io.js"></script>
 <script>
     const socket = io();
+    socket.on('message', (data) => {
+        document.getElementById('h1').innerText=data;
+    });
 </script>
 </body>
 </html>
