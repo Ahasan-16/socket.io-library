@@ -1,28 +1,20 @@
-const express=require('express');
-const app=express();
+const express = require('express');
+const app = express();
 const http=require('http');
 const expressServer=http.createServer(app);
 
 
-//socket je bhabe configure korbo
 const {Server}=require('socket.io');
-//Ei kane Server ekta class er object toiri korbo,bitore expressServer ta pass korabo
 const io=new Server(expressServer);
 
-//ei ekta namespace
-let buyNsp=io.of("/buyNsp");
-buyNsp.on('connection',(socket)=>{
-    buyNsp.emit('myEvent',"hello buy");
-});
-//ei arekta namespace
-let sellNsp=io.of("/sellNsp");
-sellNsp.on('connection',(socket)=>{
-    sellNsp.emit('myEvent',"hello sell");
-});
+io.on('connection', (socket)=>{
+    console.log('connection connected');
+    socket.on('send-message',(data)=>{
+        io.emit('transfer-message',data);
+    })
 
 
-
-
+})
 
 
 app.get('/',(req,res)=>{
@@ -31,6 +23,10 @@ app.get('/',(req,res)=>{
 
 
 
+
+
+
+
 expressServer.listen(3000,function(){
-    console.log("Server started on port 3000");
+    console.log('Express server listening on port 3000');
 });

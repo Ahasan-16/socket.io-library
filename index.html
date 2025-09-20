@@ -5,18 +5,35 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>socket.io</title>
+    <title>Chat App</title>
 </head>
 <body>
-<h1 id="h1"> I am learning socket.io library</h1>
+<h1>Chat App</h1>
+<hr>
+<div>
+    <ul id="ul"></ul>
+</div>
+<div>
+    <input type="text" id="input" placeholder="Send a message">
+    <button onclick="send()">Send</button>
+</div>
+
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  let socket=io("/buyNsp");
-  socket.on("myEvent", function(data){
-      document.getElementById("h1").innerText=data;
-  })
+    const socket = io();
 
+    const send = () => {
+       let msg= document.getElementById('input').value;
+        document.getElementById('input').value='';
+        socket.emit('send-message', msg);
+    }
+    socket.on('transfer-message', (data) => {
+        let li=document.createElement('li');
+        li.innerText=data;
+        let ul=document.getElementById('ul');
+        ul.appendChild(li);
+    })
 
 </script>
 </body>
