@@ -12,7 +12,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     const socket = io();
-    socket.on('message', (data) => {
+    socket.on('myEvent', (data) => {
         document.getElementById('h1').innerText="";
         document.getElementById('h1').innerText=data;
 
