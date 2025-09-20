@@ -13,9 +13,9 @@ const io=new Server(expressServer);
 
 io.on('connection', (socket)=>{
     console.log('connection connected');
-    socket.on('disconnect',()=>{
-        console.log('connection disconnected');
-    })
+    setTimeout(()=>{
+        socket.send("i am data,from server side !");
+    },5000);
 })
 
 
